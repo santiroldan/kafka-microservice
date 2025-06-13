@@ -1,22 +1,26 @@
-import { Injectable } from '@nestjs/common';
+import {Inject, Injectable} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserRepository } from '../../domain/user-repository';
 import { User } from '../../domain/user';
 import { UserDocument } from './user-schema';
+import {EVENT_PUBLISHER, EventPublisher} from "../../../shared/domain/event-publisher";
 
 @Injectable()
 export class MongoUserRepository implements UserRepository {
     constructor(
         @InjectModel('User') private readonly userModel: Model<UserDocument>,
+        @Inject(EVENT_PUBLISHER) private readonly publisher: EventPublisher,
     ) {}
 
     async save(name: string): Promise<void> {
-        await this.userModel.insertOne(
+        const userSaved = await this.userModel.insertOne(
             {
                 name,
             },
         );
+
+        return await this.publisher.publish('user_created', { id: userSaved._id, name: userSaved.name });
     }
 
     async findByName(name: string): Promise<User> {

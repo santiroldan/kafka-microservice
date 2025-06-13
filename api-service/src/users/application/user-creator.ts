@@ -6,11 +6,7 @@ export class UserCreator {
         @Inject(USER_REPOSITORY) private repository: UserRepository,
     ) {}
 
-    async execute(name: string) {
-        await this.repository.save(name);
-
-        const user = await this.repository.findByName(name);
-
-        return user;
+    async execute(name: string): Promise<void> {
+        return await this.repository.save(name);
     }
 }

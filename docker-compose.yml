@@ -32,17 +32,17 @@ services:
       - kafka-mongo
       - kafka
 
-  kafka-consumer:
-    container_name: 'kafka-consumer'
+  event-consumer:
+    container_name: 'event-consumer'
     build:
-      context: ./kafka-consumer
+      context: event-consumer
       dockerfile: Dockerfile
     volumes:
-      - ./kafka-consumer:/app
-      - ./kafka-consumer/node_modules:/app/node_modules
+      - ./event-consumer:/app
+      - ./event-consumer/node_modules:/app/node_modules
     command: "npm run start:dev"
     env_file:
-      - ./kafka-consumer/.env
+      - event-consumer/.env
     depends_on:
       - kafka
     networks:

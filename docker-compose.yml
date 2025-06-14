@@ -14,7 +14,7 @@ services:
       - kafka-network
 
   api:
-    container_name: 'kafka-api'
+    container_name: 'api'
     build:
       context: api
       dockerfile: Dockerfile

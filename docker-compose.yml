@@ -16,16 +16,16 @@ services:
   api:
     container_name: 'kafka-api'
     build:
-      context: ./api-service
+      context: api
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
     volumes:
-      - ./api-service:/app
-      - ./api-service/node_modules:/app/node_modules
+      - ./api:/app
+      - ./api/node_modules:/app/node_modules
     command: "npm run start:dev"
     env_file:
-      - ./api-service/.env
+      - api/.env
     networks:
       - kafka-network
     depends_on:

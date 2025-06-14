@@ -9,11 +9,8 @@ export class PostUserController {
     async create(@Body() body: { name: string; }) {
         const { name } = body;
 
-        const result = await this.creator.execute(name);
+        await this.creator.execute(name);
 
-        return {
-            message: 'User created successfully',
-            data: result,
-        };
+        return 'User created successfully';
     }
 }

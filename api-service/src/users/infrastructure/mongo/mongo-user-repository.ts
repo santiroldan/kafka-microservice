@@ -20,7 +20,7 @@ export class MongoUserRepository implements UserRepository {
             },
         );
 
-        return await this.publisher.publish('user_created', { id: userSaved._id, name: userSaved.name });
+        return this.publisher.publish('user_created', { id: userSaved._id, name: userSaved.name });
     }
 
     async findByName(name: string): Promise<User> {

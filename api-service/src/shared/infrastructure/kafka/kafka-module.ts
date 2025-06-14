@@ -19,9 +19,6 @@ const EVENT_PUBLISHER_PROVIDER = {
                         clientId: 'api-client',
                         brokers: [process.env.KAFKA_BROKER || '0.0.0.0:9092'],
                     },
-                    consumer: {
-                        groupId: 'app-consumer-group',
-                    },
                 },
             },
         ]),

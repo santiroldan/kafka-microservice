@@ -10,6 +10,7 @@ async function bootstrap() {
 		console.log("Connected to MongoDB");
 
 		const app = await NestFactory.create(AppModule);
+
 		await app.listen(3000);
 		console.log("API listening on port 3000");
 	} catch (error) {

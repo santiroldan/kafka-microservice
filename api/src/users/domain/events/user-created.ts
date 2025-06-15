@@ -6,12 +6,16 @@ export class UserCreated implements DomainEvent {
     readonly occurredOn = new Date();
 
     constructor(
-        public readonly id: string,
-        public readonly name: string,
+        private readonly id: string,
+        private readonly name: string,
     ) {}
 
     getEventName(): string {
         return UserCreated.eventName;
+    }
+
+    getOccurredOn(): Date {
+        return this.occurredOn;
     }
 
     getPayload() {

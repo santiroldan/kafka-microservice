@@ -8,7 +8,7 @@ import { UserDocument } from './user-schema';
 @Injectable()
 export class MongoUserRepository implements UserRepository {
     constructor(
-        @InjectModel('User') private readonly userModel: Model<UserDocument>,
+        @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
     ) {}
 
     async save(user: User): Promise<void> {

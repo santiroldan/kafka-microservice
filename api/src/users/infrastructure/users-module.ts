@@ -6,6 +6,7 @@ import { PostUserController } from "./http/post-user-controller";
 import { MongoUserRepository } from "./mongo/mongo-user-repository";
 import { UserSchema } from "./mongo/user-schema";
 import {KafkaModule} from "../../shared/infrastructure/kafka/kafka-module";
+import {User} from "../domain/user";
 
 export const USERS_PROVIDERS = [
 	{
@@ -17,7 +18,7 @@ export const USERS_PROVIDERS = [
 
 @Module({
 	controllers: [PostUserController],
-	imports: [MongooseModule.forFeature([{ name: "User", schema: UserSchema }]), KafkaModule],
+	imports: [MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]), KafkaModule],
 	providers: [...USERS_PROVIDERS],
 	exports: [...USERS_PROVIDERS],
 })

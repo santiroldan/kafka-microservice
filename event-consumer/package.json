@@ -1,6 +1,10 @@
 {
-	"name": "kafka-consumer",
+	"name": "event-consumer",
 	"version": "1.0.0",
+	"description": "Event consumer microservice",
+	"private": true,
+	"author": "Santiago Roldán",
+	"license": "MIT",
 	"scripts": {
 		"build": "nest build",
 		"start": "nest start",

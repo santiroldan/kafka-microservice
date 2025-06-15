@@ -9,7 +9,6 @@ export class UserCreator {
     constructor(
         @Inject(USER_REPOSITORY) private repository: UserRepository,
         @Inject(EVENT_PUBLISHER) private readonly publisher: EventPublisher,
-
     ) {}
 
     async execute(input: UserCreatorInput): Promise<void> {

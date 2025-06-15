@@ -8,7 +8,7 @@ export class KafkaTopicManager implements OnModuleInit, OnModuleDestroy, OnAppli
     private readonly logger = new Logger(KafkaTopicManager.name);
     private admin!: Admin;
     private readonly kafka = new Kafka({
-        clientId: 'admin-client',
+        clientId: process.env.KAFKA_ADMIN_CLIENT_ID || 'admin-client',
         brokers: [process.env.KAFKA_BROKER || 'kafka:9092'],
         connectionTimeout: 6000,
         retry: {

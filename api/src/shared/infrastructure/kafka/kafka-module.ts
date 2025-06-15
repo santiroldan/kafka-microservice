@@ -13,11 +13,11 @@ const EVENT_PUBLISHER_PROVIDER = {
     imports: [
         ClientsModule.register([
             {
-                name: 'KAFKA_SERVICE',
+                name: process.env.KAFKA_NAME || 'KAFKA_SERVICE',
                 transport: Transport.KAFKA,
                 options: {
                     client: {
-                        clientId: 'api-client',
+                        clientId: process.env.KAFKA_CLIENT_ID || 'api-client',
                         brokers: [process.env.KAFKA_BROKER || 'kafka:9092'],
                         connectionTimeout: 6000,
                         retry: {

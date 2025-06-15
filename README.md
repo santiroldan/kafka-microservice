@@ -1,4 +1,4 @@
-# 🎯 EDD: Microservicios con Kafka y NestJS
+# 🎯 EDD: Microservicios con Kafka
 
 Este proyecto demuestra cómo implementar microservicios utilizando Kafka y NestJS. Incluye ejemplos de configuración, producción y consumo de mensajes, así como la integración con bases de datos y otros servicios.
 

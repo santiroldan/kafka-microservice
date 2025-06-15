@@ -4,5 +4,5 @@ export const USER_REPOSITORY = Symbol("UserRepository");
 
 export interface UserRepository {
 	save(user: User): Promise<void>;
-	findByName(name: string): Promise<User>;
+	existsByEmail(email: string): Promise<boolean>;
 }

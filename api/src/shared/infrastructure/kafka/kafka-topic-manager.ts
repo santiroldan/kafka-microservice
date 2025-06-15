@@ -1,7 +1,7 @@
 import {Injectable, OnModuleInit, OnModuleDestroy, Logger, OnApplicationBootstrap} from '@nestjs/common';
 import { Kafka, Admin } from 'kafkajs';
 import * as path from 'path';
-import {findAllEvents} from "../find-all-events";
+import {findAllEvents} from "../events/find-all-events";
 
 @Injectable()
 export class KafkaTopicManager implements OnModuleInit, OnModuleDestroy, OnApplicationBootstrap {
@@ -38,8 +38,6 @@ export class KafkaTopicManager implements OnModuleInit, OnModuleDestroy, OnAppli
 
         const baseDir = path.resolve(__dirname, '..', '..', '..');
         const events = await findAllEvents(baseDir);
-        this.logger.log(`Eventos encontrados en total: ${events.length}`);
-
 
         const topicsToCreate = events
             .map(e => e.topic)
@@ -50,8 +48,11 @@ export class KafkaTopicManager implements OnModuleInit, OnModuleDestroy, OnAppli
                 replicationFactor: 1,
             }));
 
+        this.logger.log(`Eventos encontrados en total: ${events.length}`);
+        this.logger.log(`Topics existentes en Kafka: ${existingTopics.map(t => t).join(', ')}`);
+        this.logger.log(`Topics que se van a crear: ${topicsToCreate.map(t => t.topic).join(', ')}`);
+
         if (topicsToCreate.length === 0) {
-            this.logger.log('No hay topics nuevos para crear');
             return;
         }
 
@@ -62,6 +63,8 @@ export class KafkaTopicManager implements OnModuleInit, OnModuleDestroy, OnAppli
             waitForLeaders: true,
         });
 
-        this.logger.log(`Topics creados: ${result}`);
+        if(result){
+            this.logger.log('Topics creados correctamente');
+        }
     }
 }

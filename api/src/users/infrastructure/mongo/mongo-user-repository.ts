@@ -5,7 +5,7 @@ import { UserRepository } from '../../domain/user-repository';
 import { User } from '../../domain/user';
 import { UserDocument } from './user-schema';
 import {EVENT_PUBLISHER, EventPublisher} from "../../../shared/domain/event-publisher";
-import {UserCreatedEvent} from "../../domain/events/user-created-event";
+import {UserCreatedEvent} from "../events/user-created-event";
 
 @Injectable()
 export class MongoUserRepository implements UserRepository {

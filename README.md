@@ -147,7 +147,7 @@ docker compose -f docker-compose-prod.yml up --build -d
 
 ## 🧪 Ejecutar los Tests
 
-Dentro de cada microservicio, puedes ejecutar los tests con el siguiente comando:
+Dentro del microservicio de api, puedes ejecutar los tests con el siguiente comando:
 ```bash
 pnpm test
 ```

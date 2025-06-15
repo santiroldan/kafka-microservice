@@ -106,8 +106,6 @@ kafka-microservices/
 │   ├── src/
 │       ├── shared/
 │       ├── users/
-│       ├── test/
-│           ├── application/   # Tests unitarios
 ```
 
 ---

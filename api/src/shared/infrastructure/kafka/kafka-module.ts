@@ -13,7 +13,7 @@ const EVENT_PUBLISHER_PROVIDER = {
     imports: [
         ClientsModule.register([
             {
-                name: 'KAFKA_SERVICE',
+                name: process.env.KAFKA_NAME || 'KAFKA_SERVICE',
                 transport: Transport.KAFKA,
                 options: {
                     client: {

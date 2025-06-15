@@ -1,6 +1,6 @@
 import {Injectable, OnModuleInit, OnModuleDestroy, Logger, OnApplicationBootstrap} from '@nestjs/common';
 import { Kafka, Admin } from 'kafkajs';
-import path = require('path');
+import * as path from 'path';
 import {findAllEvents} from "../find-all-events";
 
 @Injectable()
@@ -33,12 +33,13 @@ export class KafkaTopicManager implements OnModuleInit, OnModuleDestroy, OnAppli
         await this.createTopicsIfNotExist();
     }
 
-
     async createTopicsIfNotExist() {
         const existingTopics = await this.admin.listTopics();
 
-        const baseDir = path.resolve(__dirname, '..', '..');
+        const baseDir = path.resolve(__dirname, '..', '..', '..');
         const events = await findAllEvents(baseDir);
+        this.logger.log(`Eventos encontrados en total: ${events.length}`);
+
 
         const topicsToCreate = events
             .map(e => e.topic)

@@ -1,21 +1,17 @@
 import {DomainEvent} from "../../../shared/domain/domain-event";
 
-export class UserCreated implements DomainEvent {
+export class UserCreated extends DomainEvent {
     static eventName = 'user_created';
-
-    readonly occurredOn = new Date();
 
     constructor(
         private readonly id: string,
         private readonly name: string,
-    ) {}
+    ) {
+        super();
+    }
 
     getEventName(): string {
         return UserCreated.eventName;
-    }
-
-    getOccurredOn(): Date {
-        return this.occurredOn;
     }
 
     getPayload() {

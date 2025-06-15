@@ -1,8 +1,0 @@
-{
-  "name": "Kafka microservices example",
-  "version": "1.0.0",
-  "description": "Kafka microservices example using NestJS and KafkaJS",
-  "private": true,
-  "author": "Santiago Roldán",
-  "license": "MIT"
-}

@@ -13,10 +13,14 @@ export class UserCreator {
     ) {}
 
     async execute(input: UserCreatorInput): Promise<void> {
-        const userToCreate = new User(input.email, input.name);
+        const userToCreate = User.create(input.email, input.name);
+
+        if(await this.repository.existsByEmail(userToCreate.getEmail())){
+            throw new Error(`User with email ${userToCreate.getEmail()} already exists.`);
+        }
 
         await this.repository.save(userToCreate);
 
-        return this.publisher.publish(new UserCreated(userToCreate.email, userToCreate.name));
+        return this.publisher.publish(new UserCreated(userToCreate.getEmail(), userToCreate.getName()));
     }
 }

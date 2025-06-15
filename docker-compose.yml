@@ -35,7 +35,7 @@ services:
       - ./api/node_modules:/app/node_modules
     command: "npm run start:dev"
     env_file:
-      - api/.env
+      - api/config/.env.dev
     networks:
       - kafka-network
     depends_on:

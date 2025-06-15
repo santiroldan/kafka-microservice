@@ -12,7 +12,7 @@ export class MongoUserRepository implements UserRepository {
     ) {}
 
     async save(user: User): Promise<void> {
-         await this.userModel.insertOne(user);
+         await this.userModel.insertOne(user.toPrimitives());
     }
 
     async existsByEmail(email: string): Promise<boolean> {

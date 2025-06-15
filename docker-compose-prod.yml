@@ -25,9 +25,11 @@ services:
   api:
     container_name: api
     build:
-      context: ./api
+      context: api
       dockerfile: Dockerfile
     command: "npm run start:prod"
+    ports:
+      - "3000:3000"
     env_file:
       - api/config/.env.prod
     depends_on:
@@ -39,7 +41,7 @@ services:
   event-consumer:
     container_name: event-consumer
     build:
-      context: ./event-consumer
+      context: event-consumer
       dockerfile: Dockerfile
     command: "npm run start:prod"
     env_file:

@@ -7,10 +7,6 @@ export class User {
 	) {}
 
 	static create(email: string, name: string): User {
-		if (!email || !name) {
-			throw new Error('Email and name are required to create a user.');
-		}
-
 		return new User(new UserEmail(email), name);
 	}
 
@@ -20,5 +16,12 @@ export class User {
 
 	getName(): string {
 		return this.name;
+	}
+
+	toPrimitives(): { email: string; name: string } {
+		return {
+			email: this.email.value,
+			name: this.name,
+		};
 	}
 }

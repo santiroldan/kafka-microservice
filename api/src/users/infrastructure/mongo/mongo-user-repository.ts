@@ -5,7 +5,7 @@ import { UserRepository } from '../../domain/user-repository';
 import { User } from '../../domain/user';
 import { UserDocument } from './user-schema';
 import {EVENT_PUBLISHER, EventPublisher} from "../../../shared/domain/event-publisher";
-import {UserCreatedEvent} from "../events/user-created-event";
+import { UserCreated } from '../events/user-created';
 
 @Injectable()
 export class MongoUserRepository implements UserRepository {
@@ -21,7 +21,7 @@ export class MongoUserRepository implements UserRepository {
             },
         );
 
-        return this.publisher.publish(new UserCreatedEvent(userSaved.id, userSaved.name));
+        return this.publisher.publish(new UserCreated(userSaved.id, userSaved.name));
     }
 
     async findByName(name: string): Promise<User> {

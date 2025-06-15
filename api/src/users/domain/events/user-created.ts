@@ -4,7 +4,7 @@ export class UserCreated extends DomainEvent {
     static eventName = 'user_created';
 
     constructor(
-        private readonly id: string,
+        private readonly email: string,
         private readonly name: string,
     ) {
         super();
@@ -16,7 +16,7 @@ export class UserCreated extends DomainEvent {
 
     getPayload() {
         return {
-            id: this.id,
+            email: this.email,
             name: this.name,
         };
     }

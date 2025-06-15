@@ -32,8 +32,7 @@ El objetivo de este proyecto es proporcionar una guía práctica para implementa
 - [Kafka](https://kafka.apache.org/) para mensajería
 - [Docker](https://www.docker.com/) para contenerización
 - [Makefile](https://www.gnu.org/software/make/) para automatización de tareas
-- [Jest](https://jestjs.io/) para testing
-- [Supertest](https://github.com/visionmedia/supertest) para tests E2E
+- [Vitest](https://vitest.dev/) para testing
 
 ---
 
@@ -101,16 +100,14 @@ kafka-microservices/
 │       ├── shared/
 │       ├── users/
 │       ├── test/
-│       ├── application/   # Tests unitarios
-│       └── infrastructure/http/   # Tests de end-to-end (e2e)
+│           ├── application/   # Tests unitarios
 ├── event-consumer/
 │   ├── config/ # Environment variables
 │   ├── src/
 │       ├── shared/
 │       ├── users/
 │       ├── test/
-│       ├── application/   # Tests unitarios
-│       └── infrastructure/http/   # Tests de end-to-end (e2e)
+│           ├── application/   # Tests unitarios
 ```
 
 ---

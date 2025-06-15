@@ -15,15 +15,9 @@ export class MongoUserRepository implements UserRepository {
          await this.userModel.insertOne(user);
     }
 
-    async findByName(name: string): Promise<User> {
-        const user = await this.userModel.findOne({
-            name,
-        });
+    async existsByEmail(email: string): Promise<boolean> {
+        const user = await this.userModel.findOne({ email });
 
-        if (!user) {
-            throw new Error(`User with name ${name} not found`);
-        }
-
-        return new User(user.id, user.name);
+        return !!user;
     }
 }

@@ -1,7 +1,7 @@
-import {EventPublisher} from '../../domain/event-publisher';
+import {EventPublisher} from '../../domain/events/event-publisher';
 import {Inject, Injectable, OnModuleDestroy, OnModuleInit} from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
-import {DomainEvent} from "../../domain/domain-event";
+import {DomainEvent} from "../../domain/events/domain-event";
 
 @Injectable()
 export class KafkaEventPublisher implements EventPublisher, OnModuleInit, OnModuleDestroy {

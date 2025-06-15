@@ -1,6 +1,6 @@
 import { NestFactory } from "@nestjs/core";
 import mongoose from "mongoose";
-import { AppModule } from "./app.module";
+import { AppModule } from "./app-module";
 
 async function bootstrap() {
 	try {

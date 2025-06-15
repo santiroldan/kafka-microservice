@@ -1,5 +1,7 @@
+import {DomainEvent} from "./domain-event";
+
 export const EVENT_PUBLISHER = Symbol("EventPublisher");
 
 export interface EventPublisher {
-    publish(payload: object): void;
+    publish(event: DomainEvent): void;
 }

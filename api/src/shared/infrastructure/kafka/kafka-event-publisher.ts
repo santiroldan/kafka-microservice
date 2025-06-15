@@ -16,7 +16,11 @@ export class KafkaEventPublisher implements EventPublisher, OnModuleInit, OnModu
             throw new Error('No se encontró topic en el evento');
         }
 
-        this.kafka.emit(event.getEventName(), event.getPayload());
+        this.kafka.emit(event.getEventName(), {
+            eventName: event.getEventName(),
+            occurredOn: event.getOccurredOn(),
+            data: event.getPayload()
+        });
     }
 
     async onModuleDestroy() {

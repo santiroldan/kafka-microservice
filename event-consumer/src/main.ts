@@ -1,12 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app-module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import * as process from "node:process";
 
 const KAFKA_CONFIG: MicroserviceOptions = {
     transport: Transport.KAFKA,
     options: {
         client: {
-            clientId: 'kafka-consumer-client',
+            clientId: process.env.KAFKA_CLIENT_ID || 'event-consumer-client',
             brokers: [process.env.KAFKA_BROKER || 'kafka:9092'],
             connectionTimeout: 6000,
             retry: {
@@ -18,7 +19,7 @@ const KAFKA_CONFIG: MicroserviceOptions = {
             },
         },
         consumer: {
-            groupId: 'kafka-consumer-group',
+            groupId: process.env.KAFKA_CONSUMER_GROUP_ID || 'event-consumer-group',
         },
     },
 };

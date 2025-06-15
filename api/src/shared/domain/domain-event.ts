@@ -1,6 +1,7 @@
 export interface DomainEvent {
     occurredOn: Date;
     getEventName(): string;
+    getOccurredOn(): Date;
     getPayload(): any;
 }
 

@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import * as path from 'path';
-import { getEventTopic } from '../domain/event-topic-decorator';
+import { getEventTopic } from './event-topic-decorator';
 
 export async function findAllEvents(baseDir: string): Promise<{ topic: string; eventClass: Function }[]> {
     const events: { topic: string; eventClass: Function }[] = [];

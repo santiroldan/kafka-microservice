@@ -1,7 +1,7 @@
 import {EventPublisher} from '../../domain/event-publisher';
 import {Inject, Injectable, OnModuleDestroy, OnModuleInit} from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
-import {getEventTopic} from "../../domain/event-topic-decorator";
+import {getEventTopic} from "../event-topic-decorator";
 import {DomainEvent} from "../../domain/event";
 
 @Injectable()

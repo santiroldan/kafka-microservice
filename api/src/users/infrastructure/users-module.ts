@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { UserCreator } from "../application/user-creator";
+import { UserCreator } from "../application/user-creator/user-creator";
 import { USER_REPOSITORY } from "../domain/user-repository";
 import { PostUserController } from "./http/post-user-controller";
 import { MongoUserRepository } from "./mongo/mongo-user-repository";

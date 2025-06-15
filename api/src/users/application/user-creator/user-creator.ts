@@ -1,8 +1,8 @@
-import {USER_REPOSITORY, UserRepository} from "../domain/user-repository";
+import {USER_REPOSITORY, UserRepository} from "../../domain/user-repository";
 import {Inject} from "@nestjs/common";
-import {EVENT_PUBLISHER, EventPublisher} from "../../shared/domain/event-publisher";
-import {UserCreated} from "../domain/events/user-created";
-import {User} from "../domain/user";
+import {EVENT_PUBLISHER, EventPublisher} from "../../../shared/domain/events/event-publisher";
+import {UserCreated} from "../../domain/events/user-created";
+import {User} from "../../domain/user";
 import {UserCreatorInput} from "./user-creator-input";
 
 export class UserCreator {

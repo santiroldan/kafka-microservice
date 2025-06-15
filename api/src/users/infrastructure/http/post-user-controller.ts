@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import {UserCreator} from "../../application/user-creator";
+import {UserCreator} from "../../application/user-creator/user-creator";
 import { IsString } from 'class-validator';
 
 export class CreateUserDto {

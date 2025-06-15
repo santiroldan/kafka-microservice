@@ -1,8 +1,7 @@
 import {EventPublisher} from '../../domain/event-publisher';
 import {Inject, Injectable, OnModuleDestroy, OnModuleInit} from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
-import {getEventTopic} from "../event-topic-decorator";
-import {DomainEvent} from "../../domain/event";
+import {DomainEvent} from "../../domain/domain-event";
 
 @Injectable()
 export class KafkaEventPublisher implements EventPublisher, OnModuleInit, OnModuleDestroy {
@@ -13,13 +12,11 @@ export class KafkaEventPublisher implements EventPublisher, OnModuleInit, OnModu
     }
 
     publish(event: DomainEvent): void {
-        const topic = getEventTopic(event.constructor);
-
-        if (!topic) {
+        if (!event.getEventName()) {
             throw new Error('No se encontró topic en el evento');
         }
 
-        this.kafka.emit(topic, event.getPayload());
+        this.kafka.emit(event.getEventName(), event.getPayload());
     }
 
     async onModuleDestroy() {

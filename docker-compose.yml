@@ -13,11 +13,21 @@ services:
     networks:
       - kafka-network
 
+  kafka-mongo:
+    container_name: 'kafka-mongo'
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - kafka-mongo-data:/data/db
+    networks:
+      - kafka-network
+
   api:
     container_name: 'api'
     build:
       context: api
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-dev
     ports:
       - "3000:3000"
     volumes:
@@ -36,7 +46,7 @@ services:
     container_name: 'event-consumer'
     build:
       context: event-consumer
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-dev
     volumes:
       - ./event-consumer:/app
       - ./event-consumer/node_modules:/app/node_modules
@@ -45,16 +55,6 @@ services:
       - event-consumer/.env
     depends_on:
       - kafka
-    networks:
-      - kafka-network
-
-  kafka-mongo:
-    container_name: 'kafka-mongo'
-    image: mongo:6
-    ports:
-      - "27017:27017"
-    volumes:
-      - kafka-mongo-data:/data/db
     networks:
       - kafka-network
 

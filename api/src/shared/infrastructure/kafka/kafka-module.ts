@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import {KafkaEventPublisher} from "./kafka-event-publisher";
-import {EVENT_PUBLISHER} from "../../domain/event-publisher";
+import {EVENT_PUBLISHER} from "../../domain/events/event-publisher";
 import {ClientsModule, Transport} from "@nestjs/microservices";
 import {KafkaTopicManager} from "./kafka-topic-manager";
 

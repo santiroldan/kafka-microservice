@@ -1,7 +1,7 @@
 import { Logger } from '@nestjs/common';
 import * as path from 'path';
 import { promises as fs } from 'fs';
-import {DomainEventConstructor} from "../../domain/domain-event";
+import {DomainEventConstructor} from "../../domain/events/domain-event";
 
 export async function findAllEvents(baseDir: string): Promise<{ topic: string; eventClass: DomainEventConstructor }[]> {
     const logger = new Logger('FindAllEvents');

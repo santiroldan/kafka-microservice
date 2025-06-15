@@ -1,4 +1,4 @@
-import {DomainEvent} from "../../../shared/domain/domain-event";
+import {DomainEvent} from "../../../shared/domain/events/domain-event";
 
 export class UserCreated extends DomainEvent {
     static eventName = 'user_created';

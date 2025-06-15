@@ -5,7 +5,7 @@ import {DomainEvent} from "../../domain/domain-event";
 
 @Injectable()
 export class KafkaEventPublisher implements EventPublisher, OnModuleInit, OnModuleDestroy {
-    constructor(@Inject('KAFKA_SERVICE') private readonly kafka: ClientKafka) {}
+    constructor(@Inject(process.env.KAFKA_NAME) private readonly kafka: ClientKafka) {}
 
     async onModuleInit() {
         await this.kafka.connect();

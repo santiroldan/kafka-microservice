@@ -1,0 +1,60 @@
+services:
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    hostname: kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    env_file:
+      - .env
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+    networks:
+      - kafka-network
+
+  kafka-mongo:
+    image: mongo:6.0.13
+    container_name: kafka-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - kafka-mongo-data:/data/db
+    networks:
+      - kafka-network
+
+  api:
+    container_name: api
+    build:
+      context: api
+      dockerfile: Dockerfile
+    command: "npm run start:prod"
+    ports:
+      - "3000:3000"
+    env_file:
+      - api/config/.env.prod
+    depends_on:
+      - kafka
+      - kafka-mongo
+    networks:
+      - kafka-network
+
+  event-consumer:
+    container_name: event-consumer
+    build:
+      context: event-consumer
+      dockerfile: Dockerfile
+    command: "npm run start:prod"
+    env_file:
+      - event-consumer/config/.env.prod
+    depends_on:
+      - kafka
+    networks:
+      - kafka-network
+
+volumes:
+  kafka-data:
+  kafka-mongo-data:
+
+networks:
+  kafka-network:
+    driver: bridge
